@@ -4,7 +4,7 @@ use warnings;
 use Path::Class qw{};
 use Config::IniFiles qw{};
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 =head1 NAME
 

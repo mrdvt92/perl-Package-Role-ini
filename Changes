@@ -1,11 +1,16 @@
 Revision history for Perl extension Package::Role::ini.
 
-0.05 2020-12-12
+0.06 2020-11-13
+  - Updated Makefile.PL to support meta::cpan better
+    - Added meta-spec version
+    - Added contributing files
+
+0.05 2020-11-12
   - Updated Makefile.PL
     - Added bugtracker
     - Fixed homepage
 
-0.04 2020-12-12
+0.04 2020-11-12
   - Updated Makefile.PL
     - Added license and git for CPAN index
 
