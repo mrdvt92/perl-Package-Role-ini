@@ -1,5 +1,5 @@
 Name:           perl-Package-Role-ini
-Version:        0.06
+Version:        0.07
 Release:        1%{?dist}
 Summary:        Perl role for "ini" object the returns a Config::IniFiles object
 License:        perl
