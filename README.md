@@ -1,6 +1,6 @@
 # NAME
 
-Package::Role::ini - Perl role for "ini" object the returns a Config::IniFiles object
+Package::Role::ini - Perl role for "ini" object that returns a Config::IniFiles object
 
 # SYNOPSIS
 
