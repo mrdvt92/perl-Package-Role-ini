@@ -7,6 +7,7 @@ WriteMakefile(
                        'Config::IniFiles' => 0,
                        'Package::New'     => 0, #tests
                        'Test::More'       => 0, #tests
+                       'File::Spec'       => 0, #tests
                       },
     ABSTRACT_FROM  => 'lib/Package/Role/ini.pm',
     AUTHOR         => 'Michael R. Davis <mrdvt at cpan>',

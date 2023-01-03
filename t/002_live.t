@@ -1,6 +1,7 @@
 # --perl--
 use strict;
 use warnings;
+use File::Spec;
 use Test::More tests => 60;
 BEGIN { use_ok('Package::New') };
 BEGIN { use_ok('Package::Role::ini') };
@@ -60,13 +61,14 @@ use base qw{My::Test};
 }
 
 {
+  
   my $obj = My::Test->new;
   isa_ok($obj, 'Package::New');
   isa_ok($obj, 'Package::Role::ini');
   is($obj->{'ini'}, undef);
   is($obj->ini_file_default_extension, 'ini'       , 'ini_file_default_extension');
   is($obj->ini_file_default,           'my-test.ini', 'ini_file_default');
-  is($obj->ini_file, $obj->ini_path . "/my-test.ini", sprintf("ini_file: %s", $obj->ini_file));
+  is($obj->ini_file, File::Spec->catfile($obj->ini_path, 'my-test.ini'), sprintf('ini_file: %s', $obj->ini_file));
   ok(-r $obj->ini_file);
   isa_ok($obj->ini, 'Config::IniFiles'); #new
   isa_ok($obj->ini, 'Config::IniFiles'); #cached
@@ -81,7 +83,7 @@ use base qw{My::Test};
   is($obj->{'ini'}, undef);
   is($obj->ini_file_default_extension, 'conf'           , 'ini_file_default_extension');
   is($obj->ini_file_default,           'my-test-sub.conf', 'ini_file_default');
-  is($obj->ini_file, $obj->ini_path . "/my-test-sub.conf", sprintf("ini_file: %s", $obj->ini_file));
+  is($obj->ini_file, File::Spec->catfile($obj->ini_path, 'my-test-sub.conf'), sprintf('ini_file: %s', $obj->ini_file));
   ok(-r $obj->ini_file);
   isa_ok($obj->ini, 'Config::IniFiles'); #new
   isa_ok($obj->ini, 'Config::IniFiles'); #cached
@@ -104,7 +106,7 @@ use base qw{My::Test};
   is($obj->ini_file_default(undef), 'my-test-sub.ini');
 
   $obj->{'ini'} = 'init';
-  is($obj->ini_file_default_extension("")   , ''     , 'ini_file_default_extension');
+  is($obj->ini_file_default_extension('')   , ''     , 'ini_file_default_extension');
   is($obj->ini_file_default_extension       , ''     , 'ini_file_default_extension');
   is($obj->ini_file_default(undef), 'my-test-sub.');
   is($obj->{'ini'}, undef);
@@ -116,7 +118,7 @@ use base qw{My::Test};
   is($obj->{'ini'}, undef);
 
   $obj->{'ini'} = 'init';
-  is($obj->ini_file_default_extension("ext"), 'ext'  , 'ini_file_default_extension');
+  is($obj->ini_file_default_extension('ext'), 'ext'  , 'ini_file_default_extension');
   is($obj->ini_file_default_extension       , 'ext'  , 'ini_file_default_extension');
   is($obj->ini_file_default(undef), 'my-test-sub.ext');
   is($obj->{'ini'}, undef);
